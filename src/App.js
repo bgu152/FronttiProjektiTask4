@@ -31,26 +31,16 @@ import {
 import Trainingslist from './components/trainings';
 import Customerlist from './components/customers';
 import CalendarApp from './components/CalendarApp';
-
+import Chart from './components/Chart';
 
 //Here I used the following video as a guide to get the React router to work with the AppBar
 //https://www.youtube.com/watch?v=voNhE4vNFa4&ab_channel=bonsaiilabs
 
 function App() {
 
-  const pages = ['Traning sessions', 'Customers'];
-  const routes = ["/", "/customers", "/calendar"];
+  const routes = ["/", "/customers", "/calendar", "/charts"];
   return (
     <div className="App">
-      {/* <AppBar position = "static">
-        <Tabs>
-          <Tab label="Training sessions"
-          
-          />
-          <Tab label="TAB2" />
-        </Tabs>
-        </AppBar> */}
-
       <HashRouter>
         <AppBar position = "static">
           <Tabs>
@@ -72,16 +62,21 @@ function App() {
               component={Link}
               to={routes[2]}
             />
+            <Tab
+              label="Charts"
+              value={routes[3]}
+              component={Link}
+              to={routes[3]}
+            />
           </Tabs>
         </AppBar>
         <Routes>
           <Route exact path="/" element={<Trainingslist />} component={Trainingslist} />
           <Route path="/customers" element={<Customerlist />} />
           <Route path="/calendar" element={<CalendarApp />} />
+          <Route path="/charts" element={<Chart />} />
         </Routes>
       </HashRouter>
-      {/* <Customerlist/> */}
-      {/* <Trainingslist/> */}
     </div>
   );
 }

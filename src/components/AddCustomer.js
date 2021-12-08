@@ -15,7 +15,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { getThemeProps } from '@mui/system';
 
-
 export default function AddCustomer(props) {
     const [open, setOpen] = React.useState(false);
     const [customer, setCustomer] = useState({

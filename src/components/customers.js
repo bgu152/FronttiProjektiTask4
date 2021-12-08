@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
-import AppBar from '@mui/material/AppBar';
 
 
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -32,7 +29,6 @@ export default function Customerlist() {
             .then(response => response.json())
             .then(data => setCustomers(data.content));
     }
-
 
     const deleteCustomer = (link) => {
         if (window.confirm('Are you sure?')) {

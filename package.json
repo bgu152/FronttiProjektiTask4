@@ -21,6 +21,7 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-table-6": "^6.11.0",
+    "recharts": "^2.1.6",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -48,4 +49,3 @@
     ]
   }
 }
-

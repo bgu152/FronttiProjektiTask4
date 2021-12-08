@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
-import AppBar from '@mui/material/AppBar';
+import { format } from 'date-fns'
 
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { getThemeProps } from '@mui/system';
-
-
-
-
 
 export default function Trainingslist() {
     const [trainings, setTrainings] = useState([]);
-    const [trainings_done,setTrainings_done] = useState([]);
+    const [trainings_done, setTrainings_done] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -32,17 +19,17 @@ export default function Trainingslist() {
     }, [trainings]);
 
 
-const customerNames = async () => {
-    let i=0;
-    let list=trainings;
-    for(i;i < trainings.length;i++){
-        const response = await fetch(trainings[i].customerHref)
-        const json = await response.json();
-        list[i].customerFirstname = json.firstname;
-        list[i].customerLastname = json.lastname;
-      }
-      setTrainings_done(list);
-   }
+    const customerNames = async () => {
+        let i = 0;
+        let list = trainings;
+        for (i; i < trainings.length; i++) {
+            const response = await fetch(trainings[i].customerHref)
+            const json = await response.json();
+            list[i].customerFirstname = json.firstname;
+            list[i].customerLastname = json.lastname;
+        }
+        setTrainings_done(list);
+    }
 
 
     const fetchData = () => {
@@ -60,7 +47,7 @@ const customerNames = async () => {
                             href: `${row.links[0].href}`,
                             customerFirstname: 'default',
                             customerLastname: 'default',
-                            
+
                         }))
                     setTrainings(results);
                 })
@@ -80,12 +67,11 @@ const customerNames = async () => {
     }
         ,
     {
-        id:'1',
+        id: '1',
         Header: 'Date',
-        accessor: row => 
-        {
+        accessor: row => {
             let pvm = new Date(row.date);
-            return  format(pvm,'Pp') ;
+            return format(pvm, 'Pp');
         }
     },
     {
@@ -94,9 +80,9 @@ const customerNames = async () => {
     },
 
     {
-        id:'2',
+        id: '2',
         Header: 'Customer',
-        accessor: row => {return `${row.customerFirstname}` + " "  + `${row.customerLastname}`}
+        accessor: row => { return `${row.customerFirstname}` + " " + `${row.customerLastname}` }
     },
     {
         sortable: false,
@@ -109,7 +95,7 @@ const customerNames = async () => {
 
     return (
         <div>
-            <ReactTable filterable = {true} data={trainings} columns={columns} />
+            <ReactTable filterable={true} data={trainings} columns={columns} />
         </div>
     )
 }
